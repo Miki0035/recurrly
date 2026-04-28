@@ -26,8 +26,8 @@ class _RBottomNavBarState extends State<RBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: RColor.lightBeige,
-      body: _pages[_selectedIndex],
+      backgroundColor: RColors.lightBeige,
+      body: SingleChildScrollView(child: _pages[_selectedIndex]),
       bottomNavigationBar: SafeArea(
         child: Container(
           height: 90,
@@ -36,8 +36,8 @@ class _RBottomNavBarState extends State<RBottomNavBar> {
             borderRadius: BorderRadius.circular(50),
             child: GNav(
               color: Colors.white,
-              backgroundColor: RColor.darkBlack,
-              tabBackgroundColor: RColor.orange,
+              backgroundColor: RColors.darkBlack,
+              tabBackgroundColor: RColors.orange,
               activeColor: Colors.white,
               tabBorderRadius: 50,
               selectedIndex: _selectedIndex,

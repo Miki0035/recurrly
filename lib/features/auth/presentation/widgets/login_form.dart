@@ -15,12 +15,12 @@ class LoginForm extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: RColor.borderColor),
+            border: Border.all(color: RColors.borderColor),
           ),
           child: Column(
             children: [
               TextFormField(
-                cursorColor: RColor.darkBlack,
+                cursorColor: RColors.darkBlack,
                 decoration: InputDecoration(
                   labelText: "Email",
                   hintText: "Enter your email",
@@ -31,7 +31,7 @@ class LoginForm extends StatelessWidget {
 
               TextFormField(
                 // obscureText: true,
-                cursorColor: RColor.darkBlack,
+                cursorColor: RColors.darkBlack,
                 decoration: InputDecoration(
                   labelText: "Password",
                   hintText: "Enter your password",
@@ -51,7 +51,7 @@ class LoginForm extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: RColor.orange,
+                    backgroundColor: RColors.orange,
                     padding: EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),

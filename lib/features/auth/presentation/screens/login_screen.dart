@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: RColor.lightBeige,
+      backgroundColor: RColors.lightBeige,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                         child: Text(
                           'Create an account',
                           style: TextStyle(
-                            color: RColor.orange,
+                            color: RColors.orange,
                             fontWeight: FontWeight.w700,
                           ),
                         ),

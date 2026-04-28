@@ -11,7 +11,7 @@ class RAppTheme {
       contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
-        borderSide: BorderSide(color: RColor.borderColor),
+        borderSide: BorderSide(color: RColors.borderColor),
       ),
       hintStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
       labelStyle: TextStyle(
@@ -21,7 +21,7 @@ class RAppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
-        borderSide: BorderSide(color: RColor.orange, width: 2),
+        borderSide: BorderSide(color: RColors.orange, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
