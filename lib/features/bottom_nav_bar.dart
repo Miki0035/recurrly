@@ -14,8 +14,8 @@ class RBottomNavBar extends StatefulWidget {
 }
 
 class _RBottomNavBarState extends State<RBottomNavBar> {
-  final List<Widget> _pages = [
-    HomeScreen(),
+  List<Widget> get _pages => [
+    HomeScreen(onNavigateToSubscription: () => changeTab(1)),
     SubscriptionScreen(),
     InsightScreen(),
     SettingScreen(),
@@ -23,11 +23,23 @@ class _RBottomNavBarState extends State<RBottomNavBar> {
 
   int _selectedIndex = 0;
 
+  void changeTab(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: RColors.lightBeige,
-      body: SingleChildScrollView(child: _pages[_selectedIndex]),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 28),
+
+          child: _pages[_selectedIndex],
+        ),
+      ),
       bottomNavigationBar: SafeArea(
         child: Container(
           height: 90,

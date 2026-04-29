@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:recurrly/core/constants/colors.dart';
+import 'package:recurrly/utils/date_formatter.dart';
 
 class HomeSubscriptionDetailCard extends StatelessWidget {
   final String icon;
   final double amount;
-  final String daysLeft;
+  final DateTime createdAt;
   final String subscriptionName;
 
   const HomeSubscriptionDetailCard({
     super.key,
     required this.icon,
     required this.amount,
-    required this.daysLeft,
+    required this.createdAt,
     required this.subscriptionName,
   });
 
@@ -39,13 +40,14 @@ class HomeSubscriptionDetailCard extends StatelessWidget {
               ),
               SizedBox(width: 5),
               Column(
+                crossAxisAlignment: .start,
                 children: [
                   Text(
                     '\$${amount.toStringAsFixed(2)}',
                     style: TextStyle(fontWeight: .w700, fontSize: 18),
                   ),
                   Text(
-                    '$daysLeft days left',
+                    RDateFormatters.formatDaysLeft(createdAt),
                     style: TextStyle(fontSize: 12, fontWeight: .w300),
                   ),
                 ],

@@ -1,11 +1,29 @@
-class RFormatters {
-  RFormatters._();
+class RDateFormatters {
+  RDateFormatters._();
 
   static String formatDate(DateTime date) {
     final monthName = getMonthName(date.month).substring(0, 3);
     final hour = date.hour;
     final minute = date.minute;
     return '$monthName ${date.day}, $hour:$minute';
+  }
+
+  static String formatDaysLeft(DateTime date) {
+    final daysLeft = DateTime.now().difference(date).inDays;
+    return '$daysLeft days left';
+  }
+
+  static String formatMonthSinceSubscriptionCreated(DateTime date) {
+    final now = DateTime.now();
+
+    int months = (now.year - date.year) * 12 + (now.month - date.month);
+
+    // Adjust if current day is before the subscription day
+    if (now.day < date.day) {
+      months--;
+    }
+
+    return '$months ${months == 1 ? 'month' : 'months'}';
   }
 
   static String getMonthName(int month) {
