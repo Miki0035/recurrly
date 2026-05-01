@@ -16,15 +16,23 @@ class RBottomNavBar extends StatefulWidget {
 class _RBottomNavBarState extends State<RBottomNavBar> {
   List<Widget> get _pages => [
     HomeScreen(onNavigateToSubscription: () => changeTab(1)),
-    SubscriptionScreen(),
-    InsightScreen(),
+    SubscriptionScreen(
+      previousScreen: _previousIndex,
+      onNavigateBack: (previousScreen) => changeTab(previousScreen),
+    ),
+    InsightScreen(
+      previousScreen: _previousIndex,
+      onNavigateBack: (previousScreen) => changeTab(previousScreen),
+    ),
     SettingScreen(),
   ];
 
+  int _previousIndex = 0;
   int _selectedIndex = 0;
 
   void changeTab(int index) {
     setState(() {
+      _previousIndex = _selectedIndex > 0 ? _selectedIndex : 0;
       _selectedIndex = index;
     });
   }
@@ -55,9 +63,7 @@ class _RBottomNavBarState extends State<RBottomNavBar> {
               selectedIndex: _selectedIndex,
               gap: 5,
               onTabChange: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
+                changeTab(index);
               },
               tabs: [
                 GButton(

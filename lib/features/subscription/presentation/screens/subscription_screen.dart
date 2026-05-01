@@ -5,7 +5,13 @@ import 'package:recurrly/core/constants/icons.dart';
 import 'package:recurrly/shared/home_subscription_tile.dart';
 
 class SubscriptionScreen extends StatelessWidget {
-  const SubscriptionScreen({super.key});
+  final int previousScreen;
+  final Function(int) onNavigateBack;
+  const SubscriptionScreen({
+    super.key,
+    required this.previousScreen,
+    required this.onNavigateBack,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,7 @@ class SubscriptionScreen extends StatelessWidget {
           crossAxisAlignment: .center,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () => onNavigateBack(previousScreen),
               child: Container(
                 width: 42,
                 padding: .all(8),
