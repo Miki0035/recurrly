@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recurrly/core/constants/colors.dart';
 import 'package:recurrly/core/constants/icons.dart';
 import 'package:recurrly/features/home/data/models/subscription_detail_model.dart';
 
@@ -107,7 +108,7 @@ final List<SubscriptionInfo> homeSubscriptions = [
   ),
   (
     subscription: subscriptions[1],
-    titleBackgroundColor: Color(0xFFE6F9F0),
+    titleBackgroundColor: RColors.lightGreen,
     iconBackgroundColor: Color(0xFF1DB954),
   ),
   (
@@ -122,37 +123,37 @@ final List<SubscriptionInfo> homeSubscriptions = [
   ),
   (
     subscription: subscriptions[4],
-    titleBackgroundColor: Color(0xFFF2F2F2),
+    titleBackgroundColor: Color(0xFFF8F9FA),
     iconBackgroundColor: Color(0xFFF2F2F2),
   ),
   (
     subscription: subscriptions[5],
-    titleBackgroundColor: Color(0xFFF2F2F2),
-    iconBackgroundColor: Color(0xFFF2F2F2),
+    titleBackgroundColor: Color(0xFFE6F7FF),
+    iconBackgroundColor: Color(0xFF00C4CC),
   ),
   (
     subscription: subscriptions[6],
-    titleBackgroundColor: Color(0xFFF2F2F2),
-    iconBackgroundColor: Color(0xFFF2F2F2),
+    titleBackgroundColor: Color(0xFFFFEFE6),
+    iconBackgroundColor: Color(0xFFF24E1E),
   ),
   (
     subscription: subscriptions[7],
-    titleBackgroundColor: Color(0xFFF2F2F2),
-    iconBackgroundColor: Color(0xFFF2F2F2),
+    titleBackgroundColor: Color(0xFFE6F7FF),
+    iconBackgroundColor: Color(0xFF00C4CC),
   ),
   (
     subscription: subscriptions[8],
-    titleBackgroundColor: Color(0xFFF2F2F2),
-    iconBackgroundColor: Color(0xFFF2F2F2),
+    titleBackgroundColor: Color(0xFFE6F0FF),
+    iconBackgroundColor: Color(0xFF0061FF),
   ),
   (
     subscription: subscriptions[9],
-    titleBackgroundColor: Color(0xFFF2F2F2),
-    iconBackgroundColor: Color(0xFFF2F2F2),
+    titleBackgroundColor: Color(0xFFF8F9FA),
+    iconBackgroundColor: Color(0xFFEFEFEF),
   ),
   (
     subscription: subscriptions[10],
-    titleBackgroundColor: Color(0xFFF2F2F2),
-    iconBackgroundColor: Color(0xFFF2F2F2),
+    titleBackgroundColor: Color(0xFFEDE7FF),
+    iconBackgroundColor: Color(0xFF6C5CE7),
   ),
 ];
