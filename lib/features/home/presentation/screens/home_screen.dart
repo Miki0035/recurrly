@@ -22,7 +22,14 @@ class HomeScreen extends StatelessWidget {
             HomeProfilePicUsername(),
 
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  useRootNavigator: true,
+                  isScrollControlled: true,
+                  builder: (context) => CreateSubscriptionFormContainer(),
+                );
+              },
               child: Container(
                 width: 42,
                 padding: .all(8),
@@ -132,6 +139,276 @@ class HomeScreen extends StatelessWidget {
           separatorBuilder: (context, index) => SizedBox(height: 12),
         ),
       ],
+    );
+  }
+}
+
+class CreateSubscriptionFormContainer extends StatelessWidget {
+  const CreateSubscriptionFormContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: .symmetric(vertical: kToolbarHeight),
+      decoration: BoxDecoration(color: RColors.lightBeige),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              mainAxisAlignment: .spaceBetween,
+              children: [
+                Text(
+                  'New Subscription',
+                  style: TextStyle(fontWeight: .w700, fontSize: 18),
+                ),
+
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: TextButton.styleFrom(
+                    side: BorderSide(color: RColors.borderColor),
+                  ),
+                  icon: Icon(Icons.close),
+                ),
+              ],
+            ),
+          ),
+
+          Divider(thickness: 1, color: RColors.borderColor),
+
+          SizedBox(height: 12),
+          // FORM
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+            child: Form(
+              child: Column(
+                crossAxisAlignment: .start,
+                children: [
+                  TextFormField(
+                    cursorColor: RColors.darkBlack,
+                    decoration: InputDecoration(labelText: "Name"),
+                  ),
+
+                  SizedBox(height: 18),
+                  TextFormField(
+                    cursorColor: RColors.darkBlack,
+                    decoration: InputDecoration(labelText: "Price"),
+                  ),
+
+                  SizedBox(height: 18),
+
+                  Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, bottom: 10),
+                        child: Text(
+                          'Frequency',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+
+                      //Frequency
+                      FormField<String>(
+                        initialValue: "Monthly",
+                        validator: (value) {
+                          if (value == null) {
+                            return "Please select an option";
+                          }
+                          return null;
+                        },
+                        builder: (FormFieldState<String> state) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: ["Monthly", "Yearly"].map((value) {
+                                  final isSelected = state.value == value;
+
+                                  return Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        state.didChange(value);
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.all(8),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 10,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: isSelected
+                                              ? RColors.lightBeige
+                                              : Colors.transparent,
+                                          borderRadius: BorderRadius.circular(
+                                            15,
+                                          ),
+                                          border: Border.all(
+                                            width: isSelected ? 2 : 1,
+                                            color: isSelected
+                                                ? RColors.orange
+                                                : RColors.borderColor,
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            value,
+                                            style: TextStyle(
+                                              color: isSelected
+                                                  ? RColors.orange
+                                                  : Colors.black,
+                                              fontWeight: isSelected
+                                                  ? .w700
+                                                  : .w400,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+
+                              // 🔴 validation message
+                              if (state.hasError)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8),
+                                  child: Text(
+                                    state.errorText!,
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                ),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 18),
+
+                  // Category
+                  Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, bottom: 10),
+                        child: Text(
+                          'Category',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+
+                      FormField<String>(
+                        initialValue: "",
+                        validator: (value) {
+                          if (value == null) {
+                            return "Please select an option";
+                          }
+                          return null;
+                        },
+                        builder: (FormFieldState<String> state) {
+                          return Wrap(
+                            spacing: 8,
+                            runSpacing: 12,
+                            children: [
+                              ...[
+                                "Entertainment",
+                                "AI Tools",
+                                "Developer Tools",
+                                "Design",
+                                "Productivity",
+                                "Other",
+                              ].map((value) {
+                                final isSelected = state.value == value;
+
+                                return GestureDetector(
+                                  onTap: () {
+                                    state.didChange(value);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 12,
+                                      horizontal: 8,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: isSelected
+                                          ? RColors.lightBeige
+                                          : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        width: isSelected ? 2 : 1,
+                                        color: isSelected
+                                            ? RColors.orange
+                                            : RColors.borderColor,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(
+                                        color: isSelected
+                                            ? RColors.orange
+                                            : Colors.black,
+                                        fontWeight: isSelected ? .w700 : .w400,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+
+                              // 🔴 validation message
+                              if (state.hasError)
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8),
+                                  child: Text(
+                                    state.errorText!,
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                ),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 48),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: RColors.orange,
+                        padding: .symmetric(vertical: 18.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: .circular(10),
+                        ),
+                      ),
+                      child: Text(
+                        'Create Subscription',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: .w800,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
