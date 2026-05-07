@@ -27,6 +27,11 @@ class RAppTheme {
         borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide(color: Colors.red, width: 2),
       ),
+
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(color: Colors.red, width: 2),
+      ),
     ),
   );
 }
