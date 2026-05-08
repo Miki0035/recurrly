@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:recurrly/core/constants/colors.dart';
+import 'package:recurrly/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:recurrly/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:recurrly/features/auth/domain/usecases/login_usecase.dart';
+import 'package:recurrly/features/auth/presentation/controller/auth_controller.dart';
 import 'package:recurrly/features/bottom_nav_bar.dart';
 
 class LoginForm extends StatefulWidget {
@@ -14,6 +18,42 @@ class _LoginFormState extends State<LoginForm> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool obscurePassword = true;
+
+  late AuthController authController;
+
+  @override
+  void initState() {
+    super.initState();
+    authController = AuthController(
+      LoginUsecase(AuthRepositoryImpl(AuthRemoteDatasource())),
+    );
+  }
+
+  Future<void> handleLogin() async {
+    // add loading
+
+    //  calls auth controller
+    final result = await authController.login(
+      emailController.text,
+      passwordController.text,
+    );
+
+    // if success nav to home_screen
+    if (result.isSuccess) {
+      // Guard the use of context
+      if (!mounted) return;
+      return context.pushReplacementTransition(
+        type: PageTransitionType.fade,
+        child: RBottomNavBar(),
+      );
+    }
+
+    if (!mounted) return;
+    // if failure show error message
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(result.error!)));
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -88,7 +88,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                     ),
                   ),
                   child: Text(
-                    'Sign in',
+                    'Create',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.white,

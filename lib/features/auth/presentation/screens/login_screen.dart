@@ -46,7 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "New to Recurly? ",
+                      text: createAccount
+                          ? "Already have an account? "
+                          : "New to Recurly? ",
                       style: TextStyle(color: Colors.black),
                     ),
                     WidgetSpan(
@@ -62,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
                         child: Text(
-                          'Create an account',
+                          createAccount ? "Sign in" : "Create an account",
                           style: TextStyle(
                             color: RColors.orange,
                             fontWeight: FontWeight.w700,
