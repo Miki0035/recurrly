@@ -3,14 +3,14 @@ import 'package:page_transition/page_transition.dart';
 import 'package:recurrly/core/constants/colors.dart';
 import 'package:recurrly/features/bottom_nav_bar.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class CreateAccountForm extends StatefulWidget {
+  const CreateAccountForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<CreateAccountForm> createState() => _CreateAccountFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _CreateAccountFormState extends State<CreateAccountForm> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool obscurePassword = true;
@@ -31,6 +31,16 @@ class _LoginFormState extends State<LoginForm> {
               TextFormField(
                 cursorColor: RColors.darkBlack,
                 decoration: InputDecoration(
+                  labelText: "Name",
+                  hintText: "Enter your full name",
+                ),
+              ),
+
+              SizedBox(height: 24),
+
+              TextFormField(
+                cursorColor: RColors.darkBlack,
+                decoration: InputDecoration(
                   labelText: "Email",
                   hintText: "Enter your email",
                 ),
@@ -44,6 +54,17 @@ class _LoginFormState extends State<LoginForm> {
                 decoration: InputDecoration(
                   labelText: "Password",
                   hintText: "Enter your password",
+                ),
+              ),
+
+              SizedBox(height: 24),
+
+              TextFormField(
+                // obscureText: true,
+                cursorColor: RColors.darkBlack,
+                decoration: InputDecoration(
+                  labelText: "Confirm Password",
+                  hintText: "Confirm your password",
                 ),
               ),
 

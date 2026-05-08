@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:recurrly/core/constants/colors.dart';
+import 'package:recurrly/features/auth/presentation/widgets/create_account_form.dart';
 import 'package:recurrly/features/auth/presentation/widgets/login_form.dart';
 import 'package:recurrly/features/auth/presentation/widgets/logo_section.dart';
-import 'package:recurrly/features/splash_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool createAccount = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +28,18 @@ class LoginScreen extends StatelessWidget {
 
               SizedBox(height: 90),
               Text(
-                'Welcome back',
+                createAccount ? 'Create an account' : 'Welcome back',
                 style: TextStyle(fontWeight: FontWeight.w800, fontSize: 22),
               ),
               SizedBox(height: 8),
               Text(
-                'Sign in to continue managing your subscriptions.',
+                createAccount
+                    ? 'Create an account to manage your subscriptions.'
+                    : 'Sign in to continue managing your subscriptions.',
                 style: TextStyle(fontSize: 12),
               ),
 
-              LoginForm(),
+              createAccount ? CreateAccountForm() : LoginForm(),
 
               SizedBox(height: 20),
               RichText(
@@ -44,10 +52,9 @@ class LoginScreen extends StatelessWidget {
                     WidgetSpan(
                       child: TextButton(
                         onPressed: () {
-                          context.pushTransition(
-                            type: PageTransitionType.fade,
-                            child: SplashScreen(),
-                          );
+                          setState(() {
+                            createAccount = !createAccount;
+                          });
                         },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
