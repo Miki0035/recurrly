@@ -15,6 +15,6 @@ class LoginUsecase {
     }
     // at runtime authRepositryImpl is the actual object created and used
     // so u don't have to call authRepositoryImpl() here
-    return await authRepository.login(email, password);
+    return await authRepository.login(email: email, password: password);
   }
 }

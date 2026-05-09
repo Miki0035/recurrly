@@ -6,6 +6,7 @@ class RAppTheme {
 
   static ThemeData lightTheme = ThemeData(
     fontFamily: 'PlusJakartaSans',
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: RColors.orange),
     inputDecorationTheme: InputDecorationTheme(
       isCollapsed: true,
       contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
