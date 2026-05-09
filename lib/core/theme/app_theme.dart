@@ -6,6 +6,19 @@ class RAppTheme {
 
   static ThemeData lightTheme = ThemeData(
     fontFamily: 'PlusJakartaSans',
+    switchTheme: SwitchThemeData(
+      trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      trackColor: WidgetStateProperty<Color?>.fromMap({
+        WidgetState.selected: RColors.orange,
+        WidgetState.any: Colors.grey.shade400,
+      }),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: WidgetStateProperty.all(TextStyle(color: Colors.black)),
+      ),
+    ),
     progressIndicatorTheme: ProgressIndicatorThemeData(color: RColors.orange),
     inputDecorationTheme: InputDecorationTheme(
       isCollapsed: true,

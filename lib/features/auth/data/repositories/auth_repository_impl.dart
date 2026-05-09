@@ -32,4 +32,14 @@ class AuthRepositoryImpl implements AuthRepository {
     );
     return user;
   }
+
+  @override
+  Future<void> deleteAccount({required String id}) async {
+    await authRemoteDataSource.deleteAccount(id: id);
+  }
+
+  @override
+  Future<void> logout() async {
+    return await authRemoteDataSource.logout();
+  }
 }

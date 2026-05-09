@@ -43,4 +43,18 @@ class AuthRemoteDatasource {
     final user = response.user!;
     return UserModel.fromMap(user.userMetadata!);
   }
+
+  Future<void> logout() async {
+    await SupabaseService.client.auth.signOut();
+  }
+
+  Future<void> deleteAccount({required String id}) async {
+    try {
+      debugPrint('remoteDataSource Delete $id\n');
+      await SupabaseService.client.auth.admin.deleteUser(id);
+    } catch (e) {
+      debugPrint("Error from remote delete: $e\n");
+      throw Exception("Failed to delete account\n");
+    }
+  }
 }

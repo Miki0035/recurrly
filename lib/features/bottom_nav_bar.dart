@@ -24,7 +24,10 @@ class _RBottomNavBarState extends State<RBottomNavBar> {
       previousScreen: _previousIndex,
       onNavigateBack: (previousScreen) => changeTab(previousScreen),
     ),
-    SettingScreen(),
+    SettingScreen(
+      previousScreen: _previousIndex,
+      onNavigateBack: (previousScreen) => changeTab(previousScreen),
+    ),
   ];
 
   int _previousIndex = 0;

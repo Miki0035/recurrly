@@ -8,4 +8,7 @@ abstract class AuthRepository {
     required String password,
     required String username,
   });
+
+  Future<void> logout();
+  Future<void> deleteAccount({required String id});
 }

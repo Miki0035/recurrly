@@ -4,7 +4,9 @@ import 'package:recurrly/core/constants/colors.dart';
 import 'package:recurrly/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:recurrly/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:recurrly/features/auth/domain/usecases/create_account_usecase.dart';
+import 'package:recurrly/features/auth/domain/usecases/delete_account_usecase.dart';
 import 'package:recurrly/features/auth/domain/usecases/login_usecase.dart';
+import 'package:recurrly/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:recurrly/features/auth/presentation/controller/auth_controller.dart';
 import 'package:recurrly/features/bottom_nav_bar.dart';
 
@@ -30,6 +32,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
     authController = AuthController(
       LoginUsecase(AuthRepositoryImpl(AuthRemoteDatasource())),
       CreateAccountUsecase(AuthRepositoryImpl(AuthRemoteDatasource())),
+      LogoutUsecase(AuthRepositoryImpl(AuthRemoteDatasource())),
+      DeleteAccountUsecase(AuthRepositoryImpl(AuthRemoteDatasource())),
     );
   }
 
