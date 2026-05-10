@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recurrly/core/auth/global_auth.dart';
 import 'package:recurrly/core/constants/colors.dart';
-import 'package:recurrly/core/services/supabase_service.dart';
 import 'package:recurrly/features/home/data/data_sources/local/subscription_local_datasource.dart';
 import 'package:recurrly/features/home/data/data_sources/remote/subscription_remote_datasource.dart';
 import 'package:recurrly/features/home/data/repositories/subscription_repository_impl.dart';
