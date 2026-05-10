@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:recurrly/core/constants/colors.dart';
-import 'package:recurrly/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:recurrly/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:recurrly/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:recurrly/features/auth/domain/usecases/create_account_usecase.dart';
 import 'package:recurrly/features/auth/domain/usecases/delete_account_usecase.dart';
@@ -9,6 +9,7 @@ import 'package:recurrly/features/auth/domain/usecases/login_usecase.dart';
 import 'package:recurrly/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:recurrly/features/auth/presentation/controller/auth_controller.dart';
 import 'package:recurrly/features/bottom_nav_bar.dart';
+import 'package:recurrly/utils/validator.dart';
 
 class CreateAccountForm extends StatefulWidget {
   const CreateAccountForm({super.key});
@@ -80,6 +81,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
             children: [
               TextFormField(
                 controller: usernameController,
+                validator: (val) => RValidator.emptyString(val!, 'Username'),
                 cursorColor: RColors.darkBlack,
                 decoration: InputDecoration(
                   labelText: "Name",
@@ -91,6 +93,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
 
               TextFormField(
                 controller: emailController,
+                validator: (val) => RValidator.validateEmail(val!),
                 cursorColor: RColors.darkBlack,
                 decoration: InputDecoration(
                   labelText: "Email",
@@ -101,10 +104,21 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               SizedBox(height: 24),
 
               TextFormField(
+                validator: (val) => RValidator.validatePassword(val!),
                 controller: passwordController,
-                // obscureText: true,
+                obscureText: obscurePassword,
                 cursorColor: RColors.darkBlack,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    icon: obscurePassword
+                        ? Icon(Icons.visibility_off)
+                        : Icon(Icons.visibility),
+                    onPressed: () {
+                      setState(() {
+                        obscurePassword = !obscurePassword;
+                      });
+                    },
+                  ),
                   labelText: "Password",
                   hintText: "Enter your password",
                 ),
@@ -114,8 +128,17 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
 
               TextFormField(
                 controller: confirmPasswordController,
-                // obscureText: true,
+                obscureText: true,
                 cursorColor: RColors.darkBlack,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please confirm your password';
+                  }
+                  if (value != passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   labelText: "Confirm Password",
                   hintText: "Confirm your password",

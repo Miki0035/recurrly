@@ -3,7 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:recurrly/core/auth/global_auth.dart';
 import 'package:recurrly/core/constants/colors.dart';
 import 'package:recurrly/core/constants/icons.dart';
-import 'package:recurrly/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:recurrly/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:recurrly/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:recurrly/features/auth/domain/usecases/create_account_usecase.dart';
 import 'package:recurrly/features/auth/domain/usecases/delete_account_usecase.dart';
@@ -54,10 +54,7 @@ class _SettingScreenState extends State<SettingScreen> {
     if (result.isSuccess) {
       if (!mounted) return;
       setState(() => _isLoading = false);
-      return context.pushReplacementTransition(
-        type: PageTransitionType.fade,
-        child: LoginScreen(),
-      );
+      return;
     }
     if (!mounted) return;
     setState(() => _isLoading = false);

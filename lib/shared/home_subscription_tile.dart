@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:recurrly/core/constants/colors.dart';
-import 'package:recurrly/features/home/data/models/subscription_detail_model.dart';
+import 'package:recurrly/features/home/domain/entities/subscription_entity.dart';
 import 'package:recurrly/features/subscription/presentation/widgets/subscription_tile_payment_info_container.dart';
 import 'package:recurrly/features/subscription/presentation/widgets/subscription_tile_plan_detail_container.dart';
-import 'package:recurrly/utils/date_formatter.dart' show RDateFormatters;
+import 'package:recurrly/utils/date_formatter.dart';
 
 class HomeSubscriptionTile extends StatefulWidget {
-  final SubscriptionDetailModel subscription;
+  final SubscriptionEntity subscription;
   final Color titleBackgroundColor;
   final Color iconBackgroundColor;
 
@@ -107,7 +107,7 @@ class _HomeSubscriptionTileState extends State<HomeSubscriptionTile> {
                             crossAxisAlignment: .start,
                             children: [
                               Text(
-                                widget.subscription.subscriptionName,
+                                widget.subscription.name,
                                 overflow: .ellipsis,
                                 style: TextStyle(
                                   fontWeight: .w700,
@@ -142,7 +142,7 @@ class _HomeSubscriptionTileState extends State<HomeSubscriptionTile> {
                   Column(
                     children: [
                       Text(
-                        '\$${widget.subscription.amount}',
+                        '\$${widget.subscription.price}',
                         style: TextStyle(fontWeight: .w700, fontSize: 18),
                       ),
 

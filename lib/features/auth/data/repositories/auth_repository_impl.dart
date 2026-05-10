@@ -1,4 +1,4 @@
-import 'package:recurrly/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:recurrly/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:recurrly/features/auth/domain/entities/user_entity.dart';
 import 'package:recurrly/features/auth/domain/repositories/auth_repository.dart';
 

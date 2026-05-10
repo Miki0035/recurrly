@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:recurrly/core/constants/colors.dart';
-import 'package:recurrly/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:recurrly/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:recurrly/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:recurrly/features/auth/domain/usecases/create_account_usecase.dart';
 import 'package:recurrly/features/auth/domain/usecases/delete_account_usecase.dart';
@@ -9,6 +9,7 @@ import 'package:recurrly/features/auth/domain/usecases/login_usecase.dart';
 import 'package:recurrly/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:recurrly/features/auth/presentation/controller/auth_controller.dart';
 import 'package:recurrly/features/bottom_nav_bar.dart';
+import 'package:recurrly/utils/validator.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -86,6 +87,7 @@ class _LoginFormState extends State<LoginForm> {
                   children: [
                     TextFormField(
                       controller: emailController,
+                      validator: (email) => RValidator.validateEmail(email!),
                       cursorColor: RColors.darkBlack,
                       decoration: InputDecoration(
                         labelText: "Email",
@@ -96,12 +98,22 @@ class _LoginFormState extends State<LoginForm> {
                     SizedBox(height: 24),
 
                     TextFormField(
-                      // obscureText: true,
+                      obscureText: obscurePassword,
                       controller: passwordController,
                       cursorColor: RColors.darkBlack,
                       decoration: InputDecoration(
                         labelText: "Password",
                         hintText: "Enter your password",
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              obscurePassword = !obscurePassword;
+                            });
+                          },
+                          icon: obscurePassword
+                              ? Icon(Icons.visibility_off)
+                              : Icon(Icons.visibility),
+                        ),
                       ),
                     ),
 

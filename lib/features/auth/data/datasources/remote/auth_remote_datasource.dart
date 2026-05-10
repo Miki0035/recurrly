@@ -8,7 +8,6 @@ class AuthRemoteDatasource {
     required String email,
     required String password,
   }) async {
-    debugPrint('from AuthRemoteDataSource login $email , $password');
     try {
       final response = await SupabaseService.client.auth.signInWithPassword(
         email: email,
