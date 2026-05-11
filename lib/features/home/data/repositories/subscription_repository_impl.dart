@@ -15,7 +15,7 @@ class SubscriptionRepositoryImpl implements SubscriptionRepository {
 
   @override
   Future<List<SubscriptionEntity>> getAllSubscriptions() async {
-    return localDatasource.getAllSubscriptions();
+    return datasource.getAllSubscriptions();
   }
 
   @override

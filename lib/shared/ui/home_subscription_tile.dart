@@ -19,8 +19,11 @@ class HomeSubscriptionTile extends StatefulWidget {
   // for animation
   final bool isExpandable;
 
+  final String icon;
+
   const HomeSubscriptionTile({
     super.key,
+    required this.icon,
     required this.titleBackgroundColor,
     required this.iconBackgroundColor,
     this.isExpandable = false,
@@ -97,10 +100,7 @@ class _HomeSubscriptionTileState extends State<HomeSubscriptionTile> {
                               color: widget.iconBackgroundColor,
                               borderRadius: .circular(12),
                             ),
-                            child: Image.asset(
-                              widget.subscription.icon,
-                              fit: .contain,
-                            ),
+                            child: Image.asset(widget.icon, fit: .contain),
                           ),
                           SizedBox(width: 5),
                           Column(

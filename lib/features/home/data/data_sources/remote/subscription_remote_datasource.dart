@@ -8,7 +8,8 @@ class SubscriptionRemoteDataSource {
     try {
       final response = await SupabaseService.client
           .from("subscriptions")
-          .select();
+          .select()
+          .order('id', ascending: true);
       return (response as List)
           .map((e) => SubscriptionModel.fromJson(e))
           .toList();

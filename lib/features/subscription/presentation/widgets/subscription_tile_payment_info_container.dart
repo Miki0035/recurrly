@@ -22,7 +22,7 @@ class SubscriptionTilePaymentInfoContainer extends StatelessWidget {
             ),
             SizedBox(width: 5),
             Text(
-              cardNumber,
+              '****${cardNumber.substring(cardNumber.length - 3)}',
               style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
             ),
           ],

@@ -65,7 +65,7 @@ class _CreateSubscriptionFormContainerState
         frequency: _frequency.toLowerCase(),
         userId: authState.currentUser!.id!,
       );
-      if (!result.isSuccess) {
+      if (result.isSuccess) {
         if (!mounted) return;
         setState(() {
           _isLoading = false;

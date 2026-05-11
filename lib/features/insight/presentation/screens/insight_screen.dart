@@ -320,6 +320,7 @@ class _InsightScreenState extends State<InsightScreen> {
                   iconBackgroundColor: tile.iconBackgroundColor,
                   onManage: () {},
                   onChange: () {},
+                  icon: tile.icon,
                 );
               },
               separatorBuilder: (context, index) => SizedBox(height: 12),

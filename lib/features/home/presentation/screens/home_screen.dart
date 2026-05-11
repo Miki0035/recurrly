@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
             future: controller.getAllSubscriptions(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == .waiting) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               }
               if (snapshot.hasError) {
                 return Text('No subscriptions found');
@@ -122,8 +122,9 @@ class HomeScreen extends StatelessWidget {
 
                 itemBuilder: (context, index) {
                   final subscription = subscriptions[index];
+                  final icon = homeSubscriptionTileColors[index].icon;
                   return HomeSubscriptionDetailCard(
-                    icon: subscription.icon,
+                    icon: icon,
                     amount: subscription.price,
                     createdAt: subscription.createdAt,
                     subscriptionName: subscription.name,
@@ -167,7 +168,7 @@ class HomeScreen extends StatelessWidget {
           future: controller.getAllSubscriptions(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == .waiting) {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }
             if (snapshot.hasError) {
               return Text('No subscriptions found');
@@ -181,6 +182,7 @@ class HomeScreen extends StatelessWidget {
                 final tile = homeSubscriptionTileColors[index];
                 return HomeSubscriptionTile(
                   subscription: subscriptions[index],
+                  icon: tile.icon,
                   titleBackgroundColor: tile.titleBackgroundColor,
                   iconBackgroundColor: tile.iconBackgroundColor,
                   onManage: () {},

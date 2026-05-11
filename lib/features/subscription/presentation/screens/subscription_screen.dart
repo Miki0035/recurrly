@@ -105,6 +105,7 @@ class SubscriptionScreen extends StatelessWidget {
                   onManage: () {},
                   onChange: () {},
                   isExpandable: true,
+                  icon: tile.icon,
                 );
               },
               separatorBuilder: (context, index) => SizedBox(height: 12),

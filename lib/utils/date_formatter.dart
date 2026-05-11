@@ -14,7 +14,7 @@ class RDateFormatters {
   }
 
   static String formatMonthSinceSubscriptionCreated(DateTime date) {
-    final now = DateTime.now();
+    final now = DateTime(2027, 12, 3);
 
     int months = (now.year - date.year) * 12 + (now.month - date.month);
 
