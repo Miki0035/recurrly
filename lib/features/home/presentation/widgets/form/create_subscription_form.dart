@@ -9,6 +9,7 @@ import 'package:recurrly/features/home/domain/usecases/save_subscription_usecase
 import 'package:recurrly/features/home/presentation/controllers/subscription_controller.dart';
 import 'package:recurrly/features/home/presentation/widgets/form/category_form_field.dart';
 import 'package:recurrly/features/home/presentation/widgets/form/frequency_form_field.dart';
+import 'package:recurrly/shared/ui/app_snackbar.dart';
 import 'package:recurrly/utils/validator.dart';
 
 class CreateSubscriptionFormContainer extends StatefulWidget {
@@ -64,70 +65,73 @@ class _CreateSubscriptionFormContainerState
         frequency: _frequency.toLowerCase(),
         userId: authState.currentUser!.id!,
       );
-      if (result.isSuccess) {
+      if (!result.isSuccess) {
         if (!mounted) return;
         setState(() {
           _isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Subscription saved successfully")),
+        AppSnackbar.showSuccess(
+          context: context,
+          message: "Subscription saved successfully",
         );
         Navigator.pop(context);
+        return;
       }
 
       if (!mounted) return;
       setState(() {
         _isLoading = false;
       });
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Failed to save subscription")));
+      Navigator.pop(context);
+      AppSnackbar.showError(context: context, message: result.error!);
+      return;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? Padding(
-            padding: const EdgeInsets.symmetric(vertical: 120),
-            child: Center(child: CircularProgressIndicator()),
-          )
-        : Container(
-            padding: .only(
-              top: 24,
-              bottom: MediaQuery.of(context).viewPadding.bottom,
-            ),
-            decoration: BoxDecoration(color: RColors.lightBeige),
-            child: Column(
-              mainAxisSize: .min,
+    return Container(
+      padding: .only(
+        top: 24,
+        bottom: MediaQuery.of(context).viewPadding.bottom,
+      ),
+      decoration: BoxDecoration(color: RColors.lightBeige),
+      child: Column(
+        mainAxisSize: .min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              mainAxisAlignment: .spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Row(
-                    mainAxisAlignment: .spaceBetween,
-                    children: [
-                      Text(
-                        'New Subscription',
-                        style: TextStyle(fontWeight: .w700, fontSize: 18),
-                      ),
-
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: TextButton.styleFrom(
-                          side: BorderSide(color: RColors.borderColor),
-                        ),
-                        icon: Icon(Icons.close),
-                      ),
-                    ],
-                  ),
+                Text(
+                  'New Subscription',
+                  style: TextStyle(fontWeight: .w700, fontSize: 18),
                 ),
 
-                Divider(thickness: 1, color: RColors.borderColor),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: TextButton.styleFrom(
+                    side: BorderSide(color: RColors.borderColor),
+                  ),
+                  icon: Icon(Icons.close),
+                ),
+              ],
+            ),
+          ),
 
-                SizedBox(height: 12),
+          Divider(thickness: 1, color: RColors.borderColor),
 
+          SizedBox(height: 12),
+
+          _isLoading
+              ? SizedBox(
+                  height: 450,
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              :
                 // FORM
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -207,8 +211,8 @@ class _CreateSubscriptionFormContainerState
                     ),
                   ),
                 ),
-              ],
-            ),
-          );
+        ],
+      ),
+    );
   }
 }

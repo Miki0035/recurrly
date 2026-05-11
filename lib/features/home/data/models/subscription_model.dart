@@ -15,11 +15,11 @@ class SubscriptionModel extends SubscriptionEntity {
 
   factory SubscriptionModel.fromJson(Map<String, dynamic> json) =>
       SubscriptionModel(
-        id: int.parse(json['id']),
+        id: json['id'],
         icon: json['icon'] ?? '',
         createdAt: DateTime.parse(json['created_at']),
         cardNumber: json['card_number'] ?? '',
-        price: json['price'] ?? 0,
+        price: (json['price'] as num).toDouble(),
         name: json['name'] ?? '',
         frequency: json['frequency'],
         category: json['category'],

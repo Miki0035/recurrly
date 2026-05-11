@@ -13,6 +13,7 @@ import 'package:recurrly/features/auth/presentation/controller/auth_controller.d
 import 'package:recurrly/features/auth/presentation/screens/login_screen.dart';
 import 'package:recurrly/features/setting/presentation/widgets/notifications_settings_container.dart';
 import 'package:recurrly/features/setting/presentation/widgets/user_profile_avatar_username_email_container.dart';
+import 'package:recurrly/shared/ui/app_snackbar.dart';
 
 class SettingScreen extends StatefulWidget {
   final int previousScreen;
@@ -54,14 +55,15 @@ class _SettingScreenState extends State<SettingScreen> {
     if (result.isSuccess) {
       if (!mounted) return;
       setState(() => _isLoading = false);
-      return;
+      AppSnackbar.showSuccess(context: context, message: "Logged out");
+      return context.pushReplacementTransition(
+        type: PageTransitionType.fade,
+        child: LoginScreen(),
+      );
     }
     if (!mounted) return;
     setState(() => _isLoading = false);
-
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(result.error!)));
+    AppSnackbar.showError(context: context, message: result.error!);
   }
 
   void _showDeleteConfirmationDialog() {
@@ -106,9 +108,7 @@ class _SettingScreenState extends State<SettingScreen> {
     }
     if (!mounted) return;
     setState(() => _isLoading = false);
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(result.error!)));
+    AppSnackbar.showError(context: context, message: result.error!);
   }
 
   @override

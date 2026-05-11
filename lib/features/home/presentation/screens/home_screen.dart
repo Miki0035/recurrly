@@ -13,7 +13,7 @@ import 'package:recurrly/features/home/presentation/widgets/form/create_subscrip
 import 'package:recurrly/features/home/presentation/widgets/home_balance_card.dart';
 import 'package:recurrly/features/home/presentation/widgets/home_profile_pic_username.dart';
 import 'package:recurrly/features/home/presentation/widgets/home_subscription_detail_card.dart';
-import 'package:recurrly/shared/home_subscription_tile.dart';
+import 'package:recurrly/shared/ui/home_subscription_tile.dart';
 
 typedef SubscriptionInfo = ({
   SubscriptionEntity subscription,

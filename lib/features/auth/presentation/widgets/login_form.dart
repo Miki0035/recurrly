@@ -9,6 +9,7 @@ import 'package:recurrly/features/auth/domain/usecases/login_usecase.dart';
 import 'package:recurrly/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:recurrly/features/auth/presentation/controller/auth_controller.dart';
 import 'package:recurrly/features/bottom_nav_bar.dart';
+import 'package:recurrly/shared/ui/app_snackbar.dart';
 import 'package:recurrly/utils/validator.dart';
 
 class LoginForm extends StatefulWidget {
@@ -62,9 +63,7 @@ class _LoginFormState extends State<LoginForm> {
     setState(() => isLoading = false);
     if (!mounted) return;
     // if failure show error message
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(result.error!)));
+    AppSnackbar.showError(context: context, message: result.error!);
   }
 
   @override

@@ -9,7 +9,7 @@ import 'package:recurrly/features/home/data/repositories/subscription_repository
 import 'package:recurrly/features/home/domain/usecases/get_all_subsciption_usecase.dart';
 import 'package:recurrly/features/home/domain/usecases/save_subscription_usecase.dart';
 import 'package:recurrly/features/home/presentation/controllers/subscription_controller.dart';
-import 'package:recurrly/shared/home_subscription_tile.dart';
+import 'package:recurrly/shared/ui/home_subscription_tile.dart';
 
 class InsightScreen extends StatefulWidget {
   final int previousScreen;

@@ -33,7 +33,6 @@ class SubscriptionRemoteDataSource {
             'name': params.name,
             'frequency': params.frequency,
             'category': params.category,
-            'owner': params.userId,
           })
           .select()
           .single();

@@ -35,8 +35,8 @@ class RValidator {
   static String? validateCurrency(String value) {
     final validation = emptyString(value, 'Amount');
     if (validation != null) return validation;
-    if (double.parse(value) <= 0) {
-      return 'Price must be greater than 0';
+    if (double.tryParse(value) == null || double.parse(value) <= 0) {
+      return 'Price must be valid number and greater than 0';
     }
     return null;
   }
